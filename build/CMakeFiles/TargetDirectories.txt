@@ -1,0 +1,3 @@
+/home/ssv/code/сброс пароля/build/CMakeFiles/SP.dir
+/home/ssv/code/сброс пароля/build/CMakeFiles/edit_cache.dir
+/home/ssv/code/сброс пароля/build/CMakeFiles/rebuild_cache.dir

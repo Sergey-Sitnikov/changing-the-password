@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/ssv/code/сброс пароля/build",
+  "command": "/usr/bin/c++ -g -std=gnu++17 -o CMakeFiles/SP.dir/src/main.cpp.o -c \"/home/ssv/code/сброс пароля/src/main.cpp\"",
+  "file": "/home/ssv/code/сброс пароля/src/main.cpp"
+}
+]
