@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ssv/code/\u0441\u0431\u0440\u043e\u0441 \u043f\u0430\u0440\u043e\u043b\u044f/build"
+			"value" : "/home/ssv/code/changing the password/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/\u0441\u0431\u0440\u043e\u0441 \u043f\u0430\u0440\u043e\u043b\u044f/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/ssv/code/changing the password/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -599,7 +599,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ssv/code/\u0441\u0431\u0440\u043e\u0441 \u043f\u0430\u0440\u043e\u043b\u044f"
+			"value" : "/home/ssv/code/changing the password"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1147,7 +1147,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/\u0441\u0431\u0440\u043e\u0441 \u043f\u0430\u0440\u043e\u043b\u044f/build"
+			"value" : "/home/ssv/code/changing the password/build"
 		},
 		{
 			"name" : "S_P_IS_TOP_LEVEL",
@@ -1171,7 +1171,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/\u0441\u0431\u0440\u043e\u0441 \u043f\u0430\u0440\u043e\u043b\u044f"
+			"value" : "/home/ssv/code/changing the password"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

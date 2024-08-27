@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake --regenerate-during-build -S"/home/ssv/code/сброс пароля" -B"/home/ssv/code/сброс пароля/build"
+  command = /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake --regenerate-during-build -S"/home/ssv/code/changing the password" -B"/home/ssv/code/changing the password/build"
   description = Re-running CMake...
   generator = 1
 

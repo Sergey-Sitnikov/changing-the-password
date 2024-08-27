@@ -39,7 +39,7 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/ssv/code/сброс$ пароля/build/
+cmake_ninja_workdir = /home/ssv/code/changing$ the$ password/build/
 # =============================================================================
 # Object build statements for EXECUTABLE target SP
 
@@ -49,7 +49,7 @@ cmake_ninja_workdir = /home/ssv/code/сброс$ пароля/build/
 
 build cmake_object_order_depends_target_SP: phony || CMakeFiles/SP.dir
 
-build CMakeFiles/SP.dir/src/main.cpp.o: CXX_COMPILER__SP_Debug /home/ssv/code/сброс$ пароля/src/main.cpp || cmake_object_order_depends_target_SP
+build CMakeFiles/SP.dir/src/main.cpp.o: CXX_COMPILER__SP_Debug /home/ssv/code/changing$ the$ password/src/main.cpp || cmake_object_order_depends_target_SP
   DEP_FILE = CMakeFiles/SP.dir/src/main.cpp.o.d
   FLAGS = -g -std=gnu++17
   OBJECT_DIR = CMakeFiles/SP.dir
@@ -77,7 +77,7 @@ build SP: CXX_EXECUTABLE_LINKER__SP_Debug CMakeFiles/SP.dir/src/main.cpp.o | /us
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/ssv/code/сброс пароля/build" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/ccmake -S"/home/ssv/code/сброс пароля" -B"/home/ssv/code/сброс пароля/build"
+  COMMAND = cd "/home/ssv/code/changing the password/build" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/ccmake -S"/home/ssv/code/changing the password" -B"/home/ssv/code/changing the password/build"
   DESC = Running CMake cache editor...
   pool = console
   restat = 1
@@ -89,7 +89,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd "/home/ssv/code/сброс пароля/build" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake --regenerate-during-build -S"/home/ssv/code/сброс пароля" -B"/home/ssv/code/сброс пароля/build"
+  COMMAND = cd "/home/ssv/code/changing the password/build" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake --regenerate-during-build -S"/home/ssv/code/changing the password" -B"/home/ssv/code/changing the password/build"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -105,7 +105,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 
 #############################################
-# Folder: /home/ssv/code/сброс пароля/build
+# Folder: /home/ssv/code/changing the password/build
 
 build all: phony SP
 
@@ -116,14 +116,14 @@ build all: phony SP
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/сброс$ пароля/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/сброс$ пароля/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake: phony
+build /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake: phony
 
 
 #############################################
