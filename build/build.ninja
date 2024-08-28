@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: S_P
+# Project: SSHPasswordChanger
 # Configurations: Debug
 # =============================================================================
 
@@ -41,36 +41,54 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /home/ssv/code/changing$ the$ password/build/
 # =============================================================================
-# Object build statements for EXECUTABLE target SP
+# Object build statements for EXECUTABLE target SSHPasswordChanger
 
 
 #############################################
-# Order-only phony target for SP
+# Order-only phony target for SSHPasswordChanger
 
-build cmake_object_order_depends_target_SP: phony || CMakeFiles/SP.dir
+build cmake_object_order_depends_target_SSHPasswordChanger: phony || SSHPasswordChanger_autogen SSHPasswordChanger_autogen/mocs_compilation.cpp SSHPasswordChanger_autogen/timestamp SSHPasswordChanger_autogen_timestamp_deps
 
-build CMakeFiles/SP.dir/src/main.cpp.o: CXX_COMPILER__SP_Debug /home/ssv/code/changing$ the$ password/src/main.cpp || cmake_object_order_depends_target_SP
-  DEP_FILE = CMakeFiles/SP.dir/src/main.cpp.o.d
-  FLAGS = -g -std=gnu++17
-  OBJECT_DIR = CMakeFiles/SP.dir
-  OBJECT_FILE_DIR = CMakeFiles/SP.dir/src
+build CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o: CXX_COMPILER__SSHPasswordChanger_Debug /home/ssv/code/changing$ the$ password/build/SSHPasswordChanger_autogen/mocs_compilation.cpp || cmake_object_order_depends_target_SSHPasswordChanger
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o.d
+  FLAGS = -g -fPIC -std=gnu++11
+  INCLUDES = -I"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+  OBJECT_DIR = CMakeFiles/SSHPasswordChanger.dir
+  OBJECT_FILE_DIR = CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen
+
+build CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o: CXX_COMPILER__SSHPasswordChanger_Debug /home/ssv/code/changing$ the$ password/src/main.cpp || cmake_object_order_depends_target_SSHPasswordChanger
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o.d
+  FLAGS = -g -fPIC -std=gnu++11
+  INCLUDES = -I"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+  OBJECT_DIR = CMakeFiles/SSHPasswordChanger.dir
+  OBJECT_FILE_DIR = CMakeFiles/SSHPasswordChanger.dir/src
+
+build CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o: CXX_COMPILER__SSHPasswordChanger_Debug /home/ssv/code/changing$ the$ password/src/ssh_helper.cpp || cmake_object_order_depends_target_SSHPasswordChanger
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o.d
+  FLAGS = -g -fPIC -std=gnu++11
+  INCLUDES = -I"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+  OBJECT_DIR = CMakeFiles/SSHPasswordChanger.dir
+  OBJECT_FILE_DIR = CMakeFiles/SSHPasswordChanger.dir/src
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target SP
+# Link build statements for EXECUTABLE target SSHPasswordChanger
 
 
 #############################################
-# Link the executable SP
+# Link the executable SSHPasswordChanger
 
-build SP: CXX_EXECUTABLE_LINKER__SP_Debug CMakeFiles/SP.dir/src/main.cpp.o | /usr/lib/x86_64-linux-gnu/libssh.so
+build SSHPasswordChanger: CXX_EXECUTABLE_LINKER__SSHPasswordChanger_Debug CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o | /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3 || SSHPasswordChanger_autogen SSHPasswordChanger_autogen_timestamp_deps
   FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libssh.so
-  OBJECT_DIR = CMakeFiles/SP.dir
+  LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3  /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3  /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
+  OBJECT_DIR = CMakeFiles/SSHPasswordChanger.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = SP
-  TARGET_PDB = SP.dbg
+  TARGET_FILE = SSHPasswordChanger
+  TARGET_PDB = SSHPasswordChanger.dbg
 
 
 #############################################
@@ -96,6 +114,40 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for SSHPasswordChanger_autogen_timestamp_deps
+
+build SSHPasswordChanger_autogen_timestamp_deps: phony CMakeFiles/SSHPasswordChanger_autogen_timestamp_deps
+
+
+#############################################
+# Utility command for SSHPasswordChanger_autogen
+
+build SSHPasswordChanger_autogen: phony CMakeFiles/SSHPasswordChanger_autogen SSHPasswordChanger_autogen/timestamp SSHPasswordChanger_autogen/mocs_compilation.cpp SSHPasswordChanger_autogen_timestamp_deps
+
+
+#############################################
+# Custom command for SSHPasswordChanger_autogen/timestamp
+
+build SSHPasswordChanger_autogen/timestamp SSHPasswordChanger_autogen/mocs_compilation.cpp | ${cmake_ninja_workdir}SSHPasswordChanger_autogen/timestamp ${cmake_ninja_workdir}SSHPasswordChanger_autogen/mocs_compilation.cpp: CUSTOM_COMMAND /usr/lib/qt5/bin/moc || SSHPasswordChanger_autogen_timestamp_deps
+  COMMAND = cd "/home/ssv/code/changing the password/build" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E cmake_autogen "/home/ssv/code/changing the password/build/CMakeFiles/SSHPasswordChanger_autogen.dir/AutogenInfo.json" Debug && /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E touch "/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/timestamp" && /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E cmake_transform_depfile Ninja gccdepfile "/home/ssv/code/changing the password" "/home/ssv/code/changing the password" "/home/ssv/code/changing the password/build" "/home/ssv/code/changing the password/build" "/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/deps" "/home/ssv/code/changing the password/build/CMakeFiles/d/041cda1a405559d00845c3fffe42433567e5f628bc4f58c505e1d2e7c685ee61.d"
+  DESC = Automatic MOC for target SSHPasswordChanger
+  depfile = /home/ssv/code/changing the password/build/CMakeFiles/d/041cda1a405559d00845c3fffe42433567e5f628bc4f58c505e1d2e7c685ee61.d
+  restat = 1
+
+
+#############################################
+# Phony custom command for CMakeFiles/SSHPasswordChanger_autogen_timestamp_deps
+
+build CMakeFiles/SSHPasswordChanger_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/SSHPasswordChanger_autogen_timestamp_deps: phony /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3 /usr/lib/qt5/bin/moc
+
+
+#############################################
+# Phony custom command for CMakeFiles/SSHPasswordChanger_autogen
+
+build CMakeFiles/SSHPasswordChanger_autogen | ${cmake_ninja_workdir}CMakeFiles/SSHPasswordChanger_autogen: phony SSHPasswordChanger_autogen/timestamp || SSHPasswordChanger_autogen_timestamp_deps
+
 # =============================================================================
 # Target aliases.
 
@@ -107,7 +159,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/ssv/code/changing the password/build
 
-build all: phony SP
+build all: phony SSHPasswordChanger
 
 # =============================================================================
 # Built-in targets
@@ -116,20 +168,27 @@ build all: phony SP
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeParseArguments.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSEmulatorIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSKmsEglDeviceIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSKmsGbmIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSX11IntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QLibInputPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalEglIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-none.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-version.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config.cmake CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake: phony
+build /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCXXInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeCommonLanguageInclude.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeGenericSystem.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeInitializeConfigs.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeLanguageInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeParseArguments.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInformation.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeSystemSpecificInitialize.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Compiler/GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-C.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU-CXX.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux-GNU.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/Linux.cmake /home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/Platform/UnixPaths.cmake /home/ssv/code/changing$ the$ password/CMakeLists.txt /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QComposePlatformInputContextPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSEmulatorIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSKmsEglDeviceIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSKmsGbmIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEglFSX11IntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevKeyboardPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevMousePlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevTabletPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QEvdevTouchScreenPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QIbusPlatformInputContextPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QLibInputPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QLinuxFbIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalEglIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QVncIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbEglIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbGlxIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Gui/Qt5Gui_QXcbIntegrationPlugin.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake /usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-none.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-version.cmake /usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config.cmake CMakeCache.txt CMakeFiles/3.24.0/CMakeCCompiler.cmake CMakeFiles/3.24.0/CMakeCXXCompiler.cmake CMakeFiles/3.24.0/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean additional files.
+
+build CMakeFiles/clean.additional: CLEAN_ADDITIONAL
+  CONFIG = Debug
 
 
 #############################################
 # Clean all the built files.
 
-build clean: CLEAN
+build clean: CLEAN CMakeFiles/clean.additional
 
 
 #############################################

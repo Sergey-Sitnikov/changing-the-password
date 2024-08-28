@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ssv/code/changing the password/src/main.cpp" "CMakeFiles/SP.dir/src/main.cpp.o" "gcc" "CMakeFiles/SP.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

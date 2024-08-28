@@ -117,24 +117,61 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named SP
+# Target rules for targets named SSHPasswordChanger
 
 # Build rule for target.
-SP: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SP
-.PHONY : SP
+SSHPasswordChanger: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SSHPasswordChanger
+.PHONY : SSHPasswordChanger
 
 # fast build rule for target.
-SP/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/build
-.PHONY : SP/fast
+SSHPasswordChanger/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/build
+.PHONY : SSHPasswordChanger/fast
+
+#=============================================================================
+# Target rules for targets named SSHPasswordChanger_autogen
+
+# Build rule for target.
+SSHPasswordChanger_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SSHPasswordChanger_autogen
+.PHONY : SSHPasswordChanger_autogen
+
+# fast build rule for target.
+SSHPasswordChanger_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger_autogen.dir/build.make CMakeFiles/SSHPasswordChanger_autogen.dir/build
+.PHONY : SSHPasswordChanger_autogen/fast
+
+SSHPasswordChanger_autogen/mocs_compilation.o: SSHPasswordChanger_autogen/mocs_compilation.cpp.o
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.o
+
+# target to build an object file
+SSHPasswordChanger_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.cpp.o
+
+SSHPasswordChanger_autogen/mocs_compilation.i: SSHPasswordChanger_autogen/mocs_compilation.cpp.i
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SSHPasswordChanger_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.i
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.cpp.i
+
+SSHPasswordChanger_autogen/mocs_compilation.s: SSHPasswordChanger_autogen/mocs_compilation.cpp.s
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SSHPasswordChanger_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.s
+.PHONY : SSHPasswordChanger_autogen/mocs_compilation.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -142,7 +179,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -150,8 +187,32 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/ssh_helper.o: src/ssh_helper.cpp.o
+.PHONY : src/ssh_helper.o
+
+# target to build an object file
+src/ssh_helper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o
+.PHONY : src/ssh_helper.cpp.o
+
+src/ssh_helper.i: src/ssh_helper.cpp.i
+.PHONY : src/ssh_helper.i
+
+# target to preprocess a source file
+src/ssh_helper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.i
+.PHONY : src/ssh_helper.cpp.i
+
+src/ssh_helper.s: src/ssh_helper.cpp.s
+.PHONY : src/ssh_helper.s
+
+# target to generate assembly for a file
+src/ssh_helper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.s
+.PHONY : src/ssh_helper.cpp.s
 
 # Help Target
 help:
@@ -161,10 +222,17 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... SP"
+	@echo "... SSHPasswordChanger_autogen"
+	@echo "... SSHPasswordChanger"
+	@echo "... SSHPasswordChanger_autogen/mocs_compilation.o"
+	@echo "... SSHPasswordChanger_autogen/mocs_compilation.i"
+	@echo "... SSHPasswordChanger_autogen/mocs_compilation.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/ssh_helper.o"
+	@echo "... src/ssh_helper.i"
+	@echo "... src/ssh_helper.s"
 .PHONY : help
 
 

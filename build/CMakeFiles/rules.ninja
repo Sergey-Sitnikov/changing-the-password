@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: S_P
+# Project: SSHPasswordChanger
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__SP_Debug
+rule CXX_COMPILER__SSHPasswordChanger_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/bin/c++ $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__SP_Debug
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__SP_Debug
+rule CXX_EXECUTABLE_LINKER__SSHPasswordChanger_Debug
   command = $PRE_LINK && /usr/bin/c++ $FLAGS $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -45,6 +45,14 @@ rule RERUN_CMAKE
   command = /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake --regenerate-during-build -S"/home/ssv/code/changing the password" -B"/home/ssv/code/changing the password/build"
   description = Re-running CMake...
   generator = 1
+
+
+#############################################
+# Rule for cleaning additional files.
+
+rule CLEAN_ADDITIONAL
+  command = /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -DCONFIG=$CONFIG -P CMakeFiles/clean_additional.cmake
+  description = Cleaning additional files...
 
 
 #############################################

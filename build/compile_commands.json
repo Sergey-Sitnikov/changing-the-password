@@ -1,7 +1,17 @@
 [
 {
   "directory": "/home/ssv/code/changing the password/build",
-  "command": "/usr/bin/c++ -g -std=gnu++17 -o CMakeFiles/SP.dir/src/main.cpp.o -c \"/home/ssv/code/changing the password/src/main.cpp\"",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I\"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include\" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o -c \"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/mocs_compilation.cpp\"",
+  "file": "/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/ssv/code/changing the password/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I\"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include\" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o -c \"/home/ssv/code/changing the password/src/main.cpp\"",
   "file": "/home/ssv/code/changing the password/src/main.cpp"
+},
+{
+  "directory": "/home/ssv/code/changing the password/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I\"/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/include\" -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -isystem /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -g -fPIC -std=gnu++11 -o CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o -c \"/home/ssv/code/changing the password/src/ssh_helper.cpp\"",
+  "file": "/home/ssv/code/changing the password/src/ssh_helper.cpp"
 }
 ]

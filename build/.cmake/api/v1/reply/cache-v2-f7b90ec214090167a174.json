@@ -843,7 +843,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "S_P"
+			"value" : "SSHPasswordChanger"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1126,19 +1126,67 @@
 			"value" : "FALSE"
 		},
 		{
-			"name" : "SSH_LIB",
+			"name" : "LibSSH_DIR",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "Path to a library."
+					"value" : "The directory containing a CMake configuration file for LibSSH."
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "/usr/lib/x86_64-linux-gnu/libssh.so"
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/libssh"
 		},
 		{
-			"name" : "S_P_BINARY_DIR",
+			"name" : "Qt5Core_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Core."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Core"
+		},
+		{
+			"name" : "Qt5Gui_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Gui."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Gui"
+		},
+		{
+			"name" : "Qt5Widgets_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5Widgets."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets"
+		},
+		{
+			"name" : "Qt5_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for Qt5."
+				}
+			],
+			"type" : "PATH",
+			"value" : "/usr/lib/x86_64-linux-gnu/cmake/Qt5"
+		},
+		{
+			"name" : "SSHPasswordChanger_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -1150,7 +1198,7 @@
 			"value" : "/home/ssv/code/changing the password/build"
 		},
 		{
-			"name" : "S_P_IS_TOP_LEVEL",
+			"name" : "SSHPasswordChanger_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -1162,7 +1210,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "S_P_SOURCE_DIR",
+			"name" : "SSHPasswordChanger_SOURCE_DIR",
 			"properties" : 
 			[
 				{
