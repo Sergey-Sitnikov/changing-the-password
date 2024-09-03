@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ssv/code/changing the password/build"
+			"value" : "/home/ssv/code/SP/changing-the-password/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -92,6 +92,22 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "0"
+		},
+		{
+			"name" : "CMAKE_COLOR_MAKEFILE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable/Disable color output during build."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -539,7 +555,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/changing the password/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/ssv/code/SP/changing-the-password/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -551,7 +567,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Ninja"
+			"value" : "Unix Makefiles"
 		},
 		{
 			"name" : "CMAKE_GENERATOR_INSTANCE",
@@ -599,7 +615,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/ssv/code/changing the password"
+			"value" : "/home/ssv/code/SP/changing-the-password"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -651,11 +667,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Program used to build from build.ninja files."
+					"value" : "Path to a program."
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/home/ssv/.espressif/tools/ninja/1.11.1/ninja"
+			"value" : "/usr/bin/gmake"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1147,7 +1163,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/changing the password/build"
+			"value" : "/home/ssv/code/SP/changing-the-password/build"
 		},
 		{
 			"name" : "S_P_IS_TOP_LEVEL",
@@ -1171,7 +1187,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/ssv/code/changing the password"
+			"value" : "/home/ssv/code/SP/changing-the-password"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

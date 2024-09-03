@@ -57,10 +57,10 @@ RM = /home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/ssv/code/changing the password"
+CMAKE_SOURCE_DIR = /home/ssv/code/SP/changing-the-password
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/ssv/code/changing the password/build"
+CMAKE_BINARY_DIR = /home/ssv/code/SP/changing-the-password/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ssv/code/changing the password/build/CMakeFiles" "/home/ssv/code/changing the password/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ssv/code/SP/changing-the-password/build/CMakeFiles /home/ssv/code/SP/changing-the-password/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/ssv/code/changing the password/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ssv/code/SP/changing-the-password/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,30 @@ SP/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/build
 .PHONY : SP/fast
 
+src/SSHClient.o: src/SSHClient.cpp.o
+.PHONY : src/SSHClient.o
+
+# target to build an object file
+src/SSHClient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/SSHClient.cpp.o
+.PHONY : src/SSHClient.cpp.o
+
+src/SSHClient.i: src/SSHClient.cpp.i
+.PHONY : src/SSHClient.i
+
+# target to preprocess a source file
+src/SSHClient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/SSHClient.cpp.i
+.PHONY : src/SSHClient.cpp.i
+
+src/SSHClient.s: src/SSHClient.cpp.s
+.PHONY : src/SSHClient.s
+
+# target to generate assembly for a file
+src/SSHClient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SP.dir/build.make CMakeFiles/SP.dir/src/SSHClient.cpp.s
+.PHONY : src/SSHClient.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -162,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... SP"
+	@echo "... src/SSHClient.o"
+	@echo "... src/SSHClient.i"
+	@echo "... src/SSHClient.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

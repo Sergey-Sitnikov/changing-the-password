@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SP::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SP-Debug-4b140fc0700abbf12b03.json",
+					"jsonFile" : "target-SP-Debug-f5291bc4b24f0f4f16f5.json",
 					"name" : "SP",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/ssv/code/changing the password/build",
-		"source" : "/home/ssv/code/changing the password"
+		"build" : "/home/ssv/code/SP/changing-the-password/build",
+		"source" : "/home/ssv/code/SP/changing-the-password"
 	},
 	"version" : 
 	{

@@ -1,7 +1,12 @@
 [
 {
-  "directory": "/home/ssv/code/changing the password/build",
-  "command": "/usr/bin/c++ -g -std=gnu++17 -o CMakeFiles/SP.dir/src/main.cpp.o -c \"/home/ssv/code/changing the password/src/main.cpp\"",
-  "file": "/home/ssv/code/changing the password/src/main.cpp"
+  "directory": "/home/ssv/code/SP/changing-the-password/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/SP.dir/src/main.cpp.o -c /home/ssv/code/SP/changing-the-password/src/main.cpp",
+  "file": "/home/ssv/code/SP/changing-the-password/src/main.cpp"
+},
+{
+  "directory": "/home/ssv/code/SP/changing-the-password/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/SP.dir/src/SSHClient.cpp.o -c /home/ssv/code/SP/changing-the-password/src/SSHClient.cpp",
+  "file": "/home/ssv/code/SP/changing-the-password/src/SSHClient.cpp"
 }
 ]

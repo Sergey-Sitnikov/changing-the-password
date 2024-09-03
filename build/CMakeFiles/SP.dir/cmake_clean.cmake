@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/SP.dir/src/SSHClient.cpp.o"
+  "CMakeFiles/SP.dir/src/SSHClient.cpp.o.d"
   "CMakeFiles/SP.dir/src/main.cpp.o"
   "CMakeFiles/SP.dir/src/main.cpp.o.d"
   "SP"

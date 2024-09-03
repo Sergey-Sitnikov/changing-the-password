@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/SP.dir/src/main.cpp.o -o SP  /usr/lib/x86_64-linux-gnu/libssh.so 
+/usr/bin/c++ -g CMakeFiles/SP.dir/src/main.cpp.o CMakeFiles/SP.dir/src/SSHClient.cpp.o -o SP  /usr/lib/x86_64-linux-gnu/libssh.so 
