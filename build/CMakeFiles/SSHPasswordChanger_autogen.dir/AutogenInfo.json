@@ -72,20 +72,19 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake",
 		"/home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/CMakeParseArguments.cmake",
-		"/usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-version.cmake",
-		"/usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config.cmake",
-		"/usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-none.cmake",
-		"/usr/lib/x86_64-linux-gnu/cmake/libssh/libssh-config-version.cmake"
+		"/home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/FindPkgConfig.cmake",
+		"/home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/FindPackageHandleStandardArgs.cmake",
+		"/home/ssv/.espressif/tools/cmake/3.24.0/share/cmake-3.24/Modules/FindPackageMessage.cmake"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/ssv/code/changing the password",
-	"DEP_FILE" : "/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/deps",
-	"DEP_FILE_RULE_NAME" : "SSHPasswordChanger_autogen/timestamp",
+	"DEP_FILE" : "",
+	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"/home/ssv/code/changing the password/src/ssh_helper.h",
+			"/home/ssv/code/changing the password/src/SSHClient.h",
 			"Mu",
-			"UVLADIE3JM/moc_ssh_helper.cpp",
+			"UVLADIE3JM/moc_SSHClient.cpp",
 			null
 		]
 	],
@@ -139,8 +138,8 @@
 	"SETTINGS_FILE" : "/home/ssv/code/changing the password/build/CMakeFiles/SSHPasswordChanger_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/ssv/code/changing the password/src/main.cpp", "Mu", null ],
-		[ "/home/ssv/code/changing the password/src/ssh_helper.cpp", "Mu", null ]
+		[ "/home/ssv/code/changing the password/src/SSHClient.cpp", "Mu", null ],
+		[ "/home/ssv/code/changing the password/src/main.cpp", "Mu", null ]
 	],
 	"VERBOSITY" : 0
 }

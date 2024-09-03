@@ -68,7 +68,7 @@ include CMakeFiles/SSHPasswordChanger_autogen.dir/progress.make
 
 CMakeFiles/SSHPasswordChanger_autogen:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/home/ssv/code/changing the password/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target SSHPasswordChanger"
-	/home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E cmake_autogen "/home/ssv/code/changing the password/build/CMakeFiles/SSHPasswordChanger_autogen.dir/AutogenInfo.json" ""
+	/home/ssv/.espressif/tools/cmake/3.24.0/bin/cmake -E cmake_autogen "/home/ssv/code/changing the password/build/CMakeFiles/SSHPasswordChanger_autogen.dir/AutogenInfo.json" Debug
 
 SSHPasswordChanger_autogen: CMakeFiles/SSHPasswordChanger_autogen
 SSHPasswordChanger_autogen: CMakeFiles/SSHPasswordChanger_autogen.dir/build.make

@@ -9,8 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/mocs_compilation.cpp" "CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o.d"
+  "/home/ssv/code/changing the password/src/SSHClient.cpp" "CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o" "gcc" "CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o.d"
   "/home/ssv/code/changing the password/src/main.cpp" "CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o" "gcc" "CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o.d"
-  "/home/ssv/code/changing the password/src/ssh_helper.cpp" "CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o" "gcc" "CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o.d"
   )
 
 # Targets to which this target links.

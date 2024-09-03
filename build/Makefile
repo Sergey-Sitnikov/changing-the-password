@@ -166,6 +166,30 @@ SSHPasswordChanger_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.s
 .PHONY : SSHPasswordChanger_autogen/mocs_compilation.cpp.s
 
+src/SSHClient.o: src/SSHClient.cpp.o
+.PHONY : src/SSHClient.o
+
+# target to build an object file
+src/SSHClient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o
+.PHONY : src/SSHClient.cpp.o
+
+src/SSHClient.i: src/SSHClient.cpp.i
+.PHONY : src/SSHClient.i
+
+# target to preprocess a source file
+src/SSHClient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.i
+.PHONY : src/SSHClient.cpp.i
+
+src/SSHClient.s: src/SSHClient.cpp.s
+.PHONY : src/SSHClient.s
+
+# target to generate assembly for a file
+src/SSHClient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.s
+.PHONY : src/SSHClient.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -190,30 +214,6 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/ssh_helper.o: src/ssh_helper.cpp.o
-.PHONY : src/ssh_helper.o
-
-# target to build an object file
-src/ssh_helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o
-.PHONY : src/ssh_helper.cpp.o
-
-src/ssh_helper.i: src/ssh_helper.cpp.i
-.PHONY : src/ssh_helper.i
-
-# target to preprocess a source file
-src/ssh_helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.i
-.PHONY : src/ssh_helper.cpp.i
-
-src/ssh_helper.s: src/ssh_helper.cpp.s
-.PHONY : src/ssh_helper.s
-
-# target to generate assembly for a file
-src/ssh_helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/SSHPasswordChanger.dir/build.make CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.s
-.PHONY : src/ssh_helper.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -227,12 +227,12 @@ help:
 	@echo "... SSHPasswordChanger_autogen/mocs_compilation.o"
 	@echo "... SSHPasswordChanger_autogen/mocs_compilation.i"
 	@echo "... SSHPasswordChanger_autogen/mocs_compilation.s"
+	@echo "... src/SSHClient.o"
+	@echo "... src/SSHClient.i"
+	@echo "... src/SSHClient.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/ssh_helper.o"
-	@echo "... src/ssh_helper.i"
-	@echo "... src/ssh_helper.s"
 .PHONY : help
 
 

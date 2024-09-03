@@ -4,10 +4,10 @@ file(REMOVE_RECURSE
   "SSHPasswordChanger_autogen"
   "CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o"
   "CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o"
+  "CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o.d"
   "CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o"
   "CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o.d"
-  "CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o"
-  "CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o.d"
   "SSHPasswordChanger"
   "SSHPasswordChanger.pdb"
 )

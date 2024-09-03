@@ -97,36 +97,37 @@ CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/ssv/code/changing the password/src/main.cpp" -o CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.s
 
-CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o: CMakeFiles/SSHPasswordChanger.dir/flags.make
-CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o: /home/ssv/code/changing\ the\ password/src/ssh_helper.cpp
-CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o: CMakeFiles/SSHPasswordChanger.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/ssv/code/changing the password/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o -MF CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o.d -o CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o -c "/home/ssv/code/changing the password/src/ssh_helper.cpp"
+CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o: CMakeFiles/SSHPasswordChanger.dir/flags.make
+CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o: /home/ssv/code/changing\ the\ password/src/SSHClient.cpp
+CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o: CMakeFiles/SSHPasswordChanger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/ssv/code/changing the password/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o -MF CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o.d -o CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o -c "/home/ssv/code/changing the password/src/SSHClient.cpp"
 
-CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/ssv/code/changing the password/src/ssh_helper.cpp" > CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.i
+CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/ssv/code/changing the password/src/SSHClient.cpp" > CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.i
 
-CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/ssv/code/changing the password/src/ssh_helper.cpp" -o CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.s
+CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/ssv/code/changing the password/src/SSHClient.cpp" -o CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.s
 
 # Object files for target SSHPasswordChanger
 SSHPasswordChanger_OBJECTS = \
 "CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o" \
-"CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o"
+"CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o"
 
 # External object files for target SSHPasswordChanger
 SSHPasswordChanger_EXTERNAL_OBJECTS =
 
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o
-SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/src/ssh_helper.cpp.o
+SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/build.make
 SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
 SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
 SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
+SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libssh.so
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/ssv/code/changing the password/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable SSHPasswordChanger"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SSHPasswordChanger.dir/link.txt --verbose=$(VERBOSE)
