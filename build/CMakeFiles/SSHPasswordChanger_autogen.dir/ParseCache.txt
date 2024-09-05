@@ -94,10 +94,12 @@
  mdp:/usr/include/c++/11/bits/stl_list.h
  mdp:/usr/include/c++/11/bits/stl_map.h
  mdp:/usr/include/c++/11/bits/stl_multimap.h
+ mdp:/usr/include/c++/11/bits/stl_multiset.h
  mdp:/usr/include/c++/11/bits/stl_numeric.h
  mdp:/usr/include/c++/11/bits/stl_pair.h
  mdp:/usr/include/c++/11/bits/stl_raw_storage_iter.h
  mdp:/usr/include/c++/11/bits/stl_relops.h
+ mdp:/usr/include/c++/11/bits/stl_set.h
  mdp:/usr/include/c++/11/bits/stl_tempbuf.h
  mdp:/usr/include/c++/11/bits/stl_tree.h
  mdp:/usr/include/c++/11/bits/stl_uninitialized.h
@@ -156,6 +158,7 @@
  mdp:/usr/include/c++/11/pstl/glue_algorithm_defs.h
  mdp:/usr/include/c++/11/pstl/glue_memory_defs.h
  mdp:/usr/include/c++/11/pstl/glue_numeric_defs.h
+ mdp:/usr/include/c++/11/set
  mdp:/usr/include/c++/11/stdexcept
  mdp:/usr/include/c++/11/stdlib.h
  mdp:/usr/include/c++/11/streambuf

@@ -14,14 +14,12 @@
 #include <algorithm> // для std::reverse
 #include <cstdlib>   // для функции system
 #include "SSHClient.h"
- #include <thread>
+#include <thread>
 #include <future>
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <algorithm>
-
-//std::string host = "178.176.205.166";
+#include <set>
 
 class MainWindow : public QWidget
 {
@@ -66,114 +64,162 @@ class MainWindow : public QWidget
 
 private slots:
 
-bool ping_host(const std::string &host)
-{
-    std::string command = "ping -c 1 " + host + " > /dev/null 2>&1"; // Для Unix-систем
-    // Для Windows используйте: std::string command = "ping -n 1 " + host;
-
-    return (system(command.c_str()) == 0);
-}
-
-void recording_password(const std::string &new_password)
-{
-    std::string filename = "/home/ssv/Documents/list_passwords.txt";
-    std::ofstream file(filename, std::ios::app);
-
-    if (file.is_open())
+    bool ping_host(const std::string &host)
     {
-        file << new_password << std::endl;
-        std::cerr << "Данные успешно записаны в файл: " << filename << std::endl;
-        file.close();
-    }
-    else
-    {
-        std::cerr << "Не удалось открыть файл для записи: " << filename << std::endl;
-    }
-}
+        std::string command = "ping -c 1 " + host + " > /dev/null 2>&1"; // Для Unix-систем
+        // Для Windows используйте: std::string command = "ping -n 1 " + host;
 
-void sending_new_password(ssh_channel channel)
-{
-    // std::string new_password;
-    // std::cout << "Введите новый пароль: ";
-    // std::cin >> new_password;
-    std::string command = "echo 'root:" + newPassword.toStdString() + "' | chpasswd && reboot"; // Команда для установки нового пароля
-
-    int rc = ssh_channel_request_exec(channel, command.c_str());
-    if (rc != SSH_OK)
-    {
-        std::cerr << "Ошибка при выполнении команды: " << ssh_get_error(channel) << std::endl;
-        return; // Выходим из функции, если возникла ошибка
+        return (system(command.c_str()) == 0);
     }
 
-    std::cout << "Пароль изменен!" << std::endl;
-    recording_password(newPassword.toStdString());
-}
+    void recording(const std::string &path_file, const std::string &name)
+    {
+        std::set<std::string> existingNames;
+        std::ifstream infile(path_file);
+        std::string existingName;
 
-void handleChangePassword() {
-    newPassword = passwordInput->text();
-    if (!newPassword.isEmpty()) {
-        // Получаем список паролей
-        std::ifstream password_file(PathPasswords.toStdString());
-        std::string line;
-
-        if (!password_file.is_open()) {
-            std::cerr << "список паролей не открыт: " << std::endl;
-            return; // Выход из функции при ошибке открытия файла
+        // Считываем существующие данные из файла в множество для проверки
+        if (infile.is_open())
+        {
+            while (std::getline(infile, existingName))
+            {
+                existingNames.insert(existingName);
+            }
+            infile.close();
+        }
+        else
+        {
+            std::cerr << "Не удалось открыть файл для чтения: " << path_file << std::endl;
+            return; // Выходим из функции, если не удалось открыть файл
         }
 
-        while (std::getline(password_file, line)) {
-            passwords.push_back(line);
-        }
+        // Проверяем, существует ли имя уже в файле
+        if (existingNames.find(name) == existingNames.end())
+        {
+            // Открываем файл для добавления новых данных
+            std::ofstream file(path_file, std::ios::app);
 
-        std::reverse(passwords.begin(), passwords.end());
-
-        // Получаем список адресов
-        std::ifstream addresses_file(PathAddresses.toStdString());
-        std::string a;
-
-        if (!addresses_file.is_open()) {
-            std::cerr << "список адресов не открыт: " << std::endl;
-            return; // Выход из функции при ошибке открытия файла
-        }
-
-        while (std::getline(addresses_file, a)) {
-            adresses.push_back(a);
-        }
-
-        // Вектор для хранения потоков
-        std::vector<std::thread> threads;
-
-        for (const auto &address : adresses) {
-            threads.emplace_back([this, address]() {
-                // Пинговаем адрес
-                if (ping_host(address)) { // Функция ping_host должна быть доступна
-                    // Если пинг успешен, пробуем подключиться
-                    for (const auto &password : passwords) {
-                        SSHClient sshClient(address, "root"); // Используем имя пользователя
-                        ssh_channel channel = sshClient.connect(password);
-
-                        if (channel) {
-                            std::cout << "Подключение к " << address << " успешно с паролем: " << password << std::endl;
-                            // Здесь можно вызвать функцию для изменения пароля
-                            sending_new_password(channel);
-                            sshClient.close(); // Закрываем подключение
-                            break; // Прерываем цикл после успешного подключения
-                        }
-                    }
-                } else {
-                    std::cerr << "Не удалось выполнить пинг для адреса: " << address << std::endl;
-                }
-            });
-        }
-
-        // Ожидаем завершения всех потоков
-        for (auto &t : threads) {
-            if (t.joinable()) {
-                t.join(); // Зачем мы ждем завершения потока
+            if (file.is_open())
+            {
+                file << name << std::endl; // Записываем имя в файл
+                std::cerr << "Данные успешно записаны в файл: " << path_file << std::endl;
+            }
+            else
+            {
+                std::cerr << "Не удалось открыть файл для записи: " << path_file << std::endl;
             }
         }
+        else
+        {
+            std::cerr << "Имя уже существует в файле: " << name << std::endl;
+        }
     }
-}
+
+    void sending_new_password(ssh_channel channel)
+    {
+        // std::string new_password;
+        // std::cout << "Введите новый пароль: ";
+        // std::cin >> new_password;
+        std::string command = "echo 'root:" + newPassword.toStdString() + "' | chpasswd && reboot"; // Команда для установки нового пароля
+
+        int rc = ssh_channel_request_exec(channel, command.c_str());
+        if (rc != SSH_OK)
+        {
+            std::cerr << "Ошибка при выполнении команды: " << ssh_get_error(channel) << std::endl;
+            return; // Выходим из функции, если возникла ошибка
+        }
+
+        std::cout << "Пароль изменен!" << std::endl;
+    }
+
+    void handleChangePassword()
+    {
+        std::cout << PathAddressesUnchangedPasswords.toStdString() << std::endl;
+        newPassword = passwordInput->text();
+        if (!newPassword.isEmpty())
+        {
+            // Получаем список паролей
+            std::ifstream password_file(PathPasswords.toStdString());
+            std::string line;
+
+            if (!password_file.is_open())
+            {
+                std::cerr << "список паролей не открыт: " << std::endl;
+                return; // Выход из функции при ошибке открытия файла
+            }
+
+            while (std::getline(password_file, line))
+            {
+                passwords.push_back(line);
+            }
+
+            std::reverse(passwords.begin(), passwords.end());
+
+            // Получаем список адресов
+            std::ifstream addresses_file(PathAddresses.toStdString());
+            std::string a;
+
+            if (!addresses_file.is_open())
+            {
+                std::cerr << "список адресов не открыт: " << std::endl;
+                return; // Выход из функции при ошибке открытия файла
+            }
+
+            while (std::getline(addresses_file, a))
+            {
+                adresses.push_back(a);
+            }
+
+            for (const auto &address : adresses)
+            {
+                if (ping_host(address))
+                {
+                    {
+                        threads.emplace_back([this, address]()
+                                             {
+                                                 for (const auto &password : passwords)
+                                                 {
+                                                     SSHClient sshClient(address, "root"); // Используем имя пользователя
+                                                     ssh_channel channel = sshClient.connect(password);
+
+                                                     if (channel)
+                                                     {
+                                                         std::cout << "Подключение к " << address << " успешно с паролем: " << password << std::endl;
+                                                         // Здесь вызываем функцию для изменения пароля
+                                                         sending_new_password(channel);
+                                                         sshClient.close(); // Закрываем подключение
+                                                         break;             // Прерываем цикл после успешного подключения
+                                                     }
+                                                     else
+                                                     {
+                                                         std::cerr << "Не удалось подключиться к " << address << " с паролем: " << password << std::endl;
+                                                         recording(PathAddressesUnchangedPasswords.toStdString(), address);
+                                                         continue;
+                                                     }
+                                                 } });
+                    }
+                }
+                else
+                {
+                    // Если пинг не удался, записываем адрес в файл
+                    recording(PathAddressesUnchangedPasswords.toStdString(), address);
+                    std::cerr << "Не удалось выполнить пинг для адреса: " << address << std::endl;
+                    continue;
+                }
+            }
+
+            // Ожидаем завершения всех потоков
+            for (auto &t : threads)
+            {
+                if (t.joinable())
+                {
+                    t.join(); // Ждем завершения потока
+                }
+            }
+        }
+        recording(PathPasswords.toStdString(), newPassword.toStdString());
+        QApplication::quit();
+    }
 
     void onBrowsePasswords()
     {
@@ -216,57 +262,11 @@ private:
     QString PathAddressesUnchangedPasswords;
     QString newPassword;
     QString ListAddresses;
-    QString ListOasswords;
+    QString ListPasswords;
     std::vector<std::string> passwords;
     std::vector<std::string> adresses;
+    std::vector<std::thread> threads; // Вектор для хранения потоков
 };
-
-
-
-
-
-
-
-// std::vector<std::string> read_passwords(const std::string &filename)
-// {
-//     std::ifstream password_file(filename);
-//     std::vector<std::string> passwords;
-//     std::string line;
-
-//     if (!password_file.is_open())
-//     {
-//         std::cerr << "Файл список паролей не открыт: " << filename << std::endl;
-//         return passwords; // Вернуть пустой вектор, если файл не открылся
-//     }
-
-//     while (std::getline(password_file, line))
-//     {
-//         passwords.push_back(line);
-//     }
-
-//     std::reverse(passwords.begin(), passwords.end());
-
-//     return passwords;
-// }
-
-// void autentification(const std::vector<std::string> &passwords)
-// {
-
-//     for (const auto &password : passwords)
-//     {
-//         std::cout << "Пытаемся использовать пароль: " << password << std::endl;
-//         SSHClient sshClient(host, "root");
-//         ssh_channel channel = sshClient.connect(password);
-
-//         if (channel)
-//         {
-//             std::cout << "Подключение успешно с паролем: " << password << std::endl;
-//             sending_new_password(channel);
-//             sshClient.close();
-//             break; // Выход из цикла после успешного подключения
-//         }
-//     }
-// }
 
 int main(int argc, char *argv[])
 {

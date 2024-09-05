@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[14];
-    char stringdata0[180];
+    QByteArrayData data[15];
+    char stringdata0[173];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,19 +36,20 @@ QT_MOC_LITERAL(1, 11, 9), // "ping_host"
 QT_MOC_LITERAL(2, 21, 0), // ""
 QT_MOC_LITERAL(3, 22, 11), // "std::string"
 QT_MOC_LITERAL(4, 34, 4), // "host"
-QT_MOC_LITERAL(5, 39, 18), // "recording_password"
-QT_MOC_LITERAL(6, 58, 12), // "new_password"
-QT_MOC_LITERAL(7, 71, 20), // "sending_new_password"
-QT_MOC_LITERAL(8, 92, 11), // "ssh_channel"
-QT_MOC_LITERAL(9, 104, 7), // "channel"
-QT_MOC_LITERAL(10, 112, 20), // "handleChangePassword"
-QT_MOC_LITERAL(11, 133, 17), // "onBrowsePasswords"
-QT_MOC_LITERAL(12, 151, 17), // "onBrowseAddresses"
-QT_MOC_LITERAL(13, 169, 10) // "onBrowseUP"
+QT_MOC_LITERAL(5, 39, 9), // "recording"
+QT_MOC_LITERAL(6, 49, 9), // "path_file"
+QT_MOC_LITERAL(7, 59, 4), // "name"
+QT_MOC_LITERAL(8, 64, 20), // "sending_new_password"
+QT_MOC_LITERAL(9, 85, 11), // "ssh_channel"
+QT_MOC_LITERAL(10, 97, 7), // "channel"
+QT_MOC_LITERAL(11, 105, 20), // "handleChangePassword"
+QT_MOC_LITERAL(12, 126, 17), // "onBrowsePasswords"
+QT_MOC_LITERAL(13, 144, 17), // "onBrowseAddresses"
+QT_MOC_LITERAL(14, 162, 10) // "onBrowseUP"
 
     },
     "MainWindow\0ping_host\0\0std::string\0"
-    "host\0recording_password\0new_password\0"
+    "host\0recording\0path_file\0name\0"
     "sending_new_password\0ssh_channel\0"
     "channel\0handleChangePassword\0"
     "onBrowsePasswords\0onBrowseAddresses\0"
@@ -71,17 +72,17 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    1,   49,    2, 0x08 /* Private */,
-       5,    1,   52,    2, 0x08 /* Private */,
-       7,    1,   55,    2, 0x08 /* Private */,
-      10,    0,   58,    2, 0x08 /* Private */,
-      11,    0,   59,    2, 0x08 /* Private */,
-      12,    0,   60,    2, 0x08 /* Private */,
-      13,    0,   61,    2, 0x08 /* Private */,
+       5,    2,   52,    2, 0x08 /* Private */,
+       8,    1,   57,    2, 0x08 /* Private */,
+      11,    0,   60,    2, 0x08 /* Private */,
+      12,    0,   61,    2, 0x08 /* Private */,
+      13,    0,   62,    2, 0x08 /* Private */,
+      14,    0,   63,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Bool, 0x80000000 | 3,    4,
-    QMetaType::Void, 0x80000000 | 3,    6,
-    QMetaType::Void, 0x80000000 | 8,    9,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    6,    7,
+    QMetaType::Void, 0x80000000 | 9,   10,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -98,7 +99,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: { bool _r = _t->ping_host((*reinterpret_cast< const std::string(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 1: _t->recording_password((*reinterpret_cast< const std::string(*)>(_a[1]))); break;
+        case 1: _t->recording((*reinterpret_cast< const std::string(*)>(_a[1])),(*reinterpret_cast< const std::string(*)>(_a[2]))); break;
         case 2: _t->sending_new_password((*reinterpret_cast< ssh_channel(*)>(_a[1]))); break;
         case 3: _t->handleChangePassword(); break;
         case 4: _t->onBrowsePasswords(); break;
