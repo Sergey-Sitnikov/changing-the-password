@@ -3,6 +3,9 @@ project(SSHPasswordChanger)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# Указываем путь к статической версии библиотеки Qt5
+set(CMAKE_PREFIX_PATH "/path/to/your/Qt/static") # Замените на правильный путь
+
 # Находим библиотеку Qt5
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
 

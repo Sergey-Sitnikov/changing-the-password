@@ -56,6 +56,8 @@ class MainWindow : public QWidget
         layout->addWidget(changeButton);
         setLayout(layout);
 
+        layout->addWidget(progres);
+
         connect(changeButton, &QPushButton::clicked, this, &MainWindow::handleChangePassword);
         connect(browsePasswordButton, &QPushButton::clicked, this, &MainWindow::onBrowsePasswords); // Подключаем кнопку
         connect(browseAddressesButton, &QPushButton::clicked, this, &MainWindow::onBrowseAddresses);
@@ -134,7 +136,6 @@ private slots:
 
     void handleChangePassword()
     {
-        std::cout << PathAddressesUnchangedPasswords.toStdString() << std::endl;
         newPassword = passwordInput->text();
         if (!newPassword.isEmpty())
         {
@@ -170,8 +171,10 @@ private slots:
                 adresses.push_back(a);
             }
 
-            for (const auto &address : adresses)
+            for (size_t i = 1; i < adresses.size() + 1; ++i)
             {
+                std::string address = adresses[i - 1];
+                updateProgres(adresses.size() / i);
                 if (ping_host(address))
                 {
                     {
@@ -218,7 +221,8 @@ private slots:
             }
         }
         recording(PathPasswords.toStdString(), newPassword.toStdString());
-        QApplication::quit();
+        QString text = QString("Готово");
+        progres->setText(text);
     }
 
     void onBrowsePasswords()
@@ -251,6 +255,12 @@ private slots:
         }
     }
 
+    void updateProgres(uint count)
+    {
+        QString text = QString("Выполнено: %1\%").arg(count);
+        progres->setText(text);
+    }
+
 private:
     QLineEdit *passwordInput;
     QLabel *statusLabel;
@@ -266,6 +276,7 @@ private:
     std::vector<std::string> passwords;
     std::vector<std::string> adresses;
     std::vector<std::thread> threads; // Вектор для хранения потоков
+    QLabel *progres = new QLabel("Обработано: 0%");
 };
 
 int main(int argc, char *argv[])
