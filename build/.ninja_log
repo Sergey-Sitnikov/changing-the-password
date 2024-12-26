@@ -1,0 +1,9 @@
+# ninja log v5
+0	128	1734957571888516071	SSHPasswordChanger_autogen/timestamp	13b5f2cd48176286
+0	128	1734957571888516071	SSHPasswordChanger_autogen/mocs_compilation.cpp	13b5f2cd48176286
+0	128	1734957571888516071	/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/timestamp	13b5f2cd48176286
+0	128	1734957571888516071	/home/ssv/code/changing the password/build/SSHPasswordChanger_autogen/mocs_compilation.cpp	13b5f2cd48176286
+128	139	1734957571900516016	CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen/mocs_compilation.cpp.o	619ab5e453aa0066
+128	336	1734957572097515105	CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o	c6db027699b85772
+128	1299	1734957573059510657	CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o	94810835dfbcefdf
+1300	1519	1734957573279509640	SSHPasswordChanger	2f8d47915f6aa9dc

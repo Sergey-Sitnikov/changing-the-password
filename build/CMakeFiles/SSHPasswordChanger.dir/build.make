@@ -124,9 +124,9 @@ SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/SSHPasswordChanger_autogen
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/src/main.cpp.o
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/src/SSHClient.cpp.o
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/build.make
-SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.3
-SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.3
-SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.3
+SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
+SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
+SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 SSHPasswordChanger: /usr/lib/x86_64-linux-gnu/libssh.so
 SSHPasswordChanger: CMakeFiles/SSHPasswordChanger.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/ssv/code/changing the password/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable SSHPasswordChanger"

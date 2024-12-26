@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 project(SSHPasswordChanger)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 # Указываем путь к статической версии библиотеки Qt5
-set(CMAKE_PREFIX_PATH "/path/to/your/Qt/static") # Замените на правильный путь
+set(CMAKE_PREFIX_PATH "/path/to/your/Qt/static") 
 
 # Находим библиотеку Qt5
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
@@ -14,7 +14,8 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBSSH REQUIRED IMPORTED_TARGET libssh)
 
 # Создаем исполняемый файл
-add_executable(SSHPasswordChanger src/main.cpp src/SSHClient.cpp)
+add_executable(SSHPasswordChanger src/main.cpp src/SSHClient.cpp
+    src/ThreadPool.h)
 
 # Включаем автоматическую генерацию moc для Qt
 set_target_properties(SSHPasswordChanger PROPERTIES AUTOMOC ON)
