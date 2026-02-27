@@ -1,258 +1,329 @@
 #include <QApplication>
-#include <QWidget>
-#include <QPushButton>
+#include <QMainWindow>
 #include <QVBoxLayout>
-#include <QLineEdit>
-#include <QString>
+#include <QHBoxLayout>
 #include <QLabel>
-#include <QMessageBox>
+#include <QLineEdit>
+#include <QPushButton>
 #include <QFileDialog>
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <cstdlib>
-#include <set>
-// #include <thread>
+#include <QTextEdit>
 #include <QMutex>
-// #include <future>
+#include <QProgressBar>
+#include <QProcess> // Добавлено для надежного пинга
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <set>
+#include <atomic>
 #include "SSHClient.h"
 #include "ThreadPool.h"
 
-class MainWindow : public QWidget
+// Глобальные переменные для синхронизации и хранения данных
+QMutex fileMutex; 
+QString newPassword; 
+
+// Функция пинга с анализом вывода
+bool ping_host(const std::string &address) {
+    QProcess pingProcess;
+    // Команда ping: 1 пакет, таймаут 2 секунды
+    pingProcess.start("ping", QStringList() << "-c" << "1" << "-W" << "2" << QString::fromStdString(address));
+    
+    // Ждем завершения (максимум 3.5 сек, чтобы уче таймаут)
+    if (!pingProcess.waitForFinished(3500)) {
+        pingProcess.kill();
+        return false;
+    }
+
+    int exitCode = pingProcess.exitCode();
+    QByteArray output = pingProcess.readAllStandardOutput();
+    QString strOutput = QString::fromUtf8(output);
+
+    // Анализируем вывод. Стандартный вывод успешного пинга содержит "1 received"
+    // Это надежнее, чем просто код возврата, так как некоторые системы могут возвращать 0 при ошибках
+    if (strOutput.contains("1 received") || strOutput.contains("1 packets received")) {
+        return true;
+    }
+
+    // Если код возврата 0, но по какой-то причине текст не совпал, считаем успехом (fallback)
+    if (exitCode == 0) {
+        return true;
+    }
+
+    return false;
+}
+
+/* bool ping_host(const std::string &host)
 {
-    Q_OBJECT
+    std::string command = "ping -c 1 " + host + " > /dev/null 2>&1"; // Для Unix-систем
+    // Для Windows используйте: std::string command = "ping -n 1 " + host;
 
-public:
-    MainWindow(QWidget *parent = nullptr)
-        : QWidget(parent),
-          progres(new QLabel("Обработано: 0%"))
-    {
-        QVBoxLayout *layout = new QVBoxLayout;
+    return (system(command.c_str()) == 0);
+} */
 
-        passwordInput = new QLineEdit(this);
-        QPushButton *changeButton = new QPushButton("Изменить пароль", this);
-        layout->addWidget(new QLabel("Введите новый пароль:", this));
-        layout->addWidget(passwordInput);
+// Функция записи результатов в файл
+void recording(const std::string &path_file, const std::string &name, const std::string &reason) {
+    QMutexLocker locker(&fileMutex);
+    
+    std::set<std::string> existingNames;
+    std::ifstream infile(path_file);
+    std::string existingName;
+    std::string line = name + " " + reason;
 
-        PathListPassword = new QLineEdit(this);
-        PathListPassword->setPlaceholderText("Укажите путь к списку паролей");
-        QPushButton *browsePasswordButton = new QPushButton("Обзор...", this);
-        layout->addWidget(PathListPassword);
-        layout->addWidget(browsePasswordButton);
-
-        PathListAddresses = new QLineEdit(this);
-        PathListAddresses->setPlaceholderText("Укажите путь к списку адресов");
-        QPushButton *browseAddressesButton = new QPushButton("Обзор...", this);
-        layout->addWidget(PathListAddresses);
-        layout->addWidget(browseAddressesButton);
-
-        ListAddressesUnchangedPasswords = new QLineEdit(this);
-        ListAddressesUnchangedPasswords->setPlaceholderText("Укажите путь для сохранения адресов с неизмененными паролями");
-        QPushButton *browseUPButton = new QPushButton("Обзор...", this); // Кнопка для выбора файла
-        layout->addWidget(ListAddressesUnchangedPasswords);
-        layout->addWidget(browseUPButton);
-
-        layout->addWidget(changeButton);
-        layout->addWidget(progres);
-        setLayout(layout);
-
-        connect(changeButton, &QPushButton::clicked, this, &MainWindow::handleChangePassword);
-        connect(browsePasswordButton, &QPushButton::clicked, this, &MainWindow::onBrowsePasswords);
-        connect(browseAddressesButton, &QPushButton::clicked, this, &MainWindow::onBrowseAddresses);
-        connect(browseUPButton, &QPushButton::clicked, this, &MainWindow::onBrowseUP);
-    }
-
-private slots:
-    void handleChangePassword()
-    {
-        newPassword = passwordInput->text();
-        if (newPassword.isEmpty())
-        {
-            QMessageBox::warning(this, "Ошибка", "Пароль не может быть пустым.");
-            return;
-        }
-
-        // Считываем список паролей
-        std::ifstream password_file(PathPasswords.toStdString());
-        if (!password_file.is_open())
-        {
-            QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл со списком паролей.");
-            return;
-        }
-
-        std::string line;
-        while (std::getline(password_file, line))
-        {
-            passwords.push_back(line);
-        }
-        std::reverse(passwords.begin(), passwords.end());
-
-        // Считываем список адресов
-        std::ifstream addresses_file(PathAddresses.toStdString());
-        if (!addresses_file.is_open())
-        {
-            QMessageBox::warning(this, "Ошибка", "Не удалось открыть файл со списком адресов.");
-            return;
-        }
-
-        std::string address;
-        while (std::getline(addresses_file, address))
-        {
-            adresses.push_back(address);
-        }
-        std::cout << "adresses.size() " << adresses.size() << std::endl;
-        // Прежнее удаление futures
-        // Сохранение в futures может быть не нужно в данном контексте
-        for (size_t i = 0; i < adresses.size(); ++i)
-        {
-            updateProgres(i + 1, adresses.size());
-            if (ping_host(adresses[i]))
-            {
-                pool.enqueue([this, address = adresses[i]]()
-                             {
-                    for (const auto &password : passwords) {
-                        SSHClient sshClient(address, "root");
-                        ssh_channel channel = sshClient.connectSSH(password, 15);
-
-                        if (channel) {
-                            std::cout << "Подключение к " << address << " успешно с паролем: " << password << std::endl;
-                            sending_new_password(channel);
-                            sshClient.close();
-                            break;
-                        } else {
-                            std::cerr << "Не удалось подключиться к " << address << " с паролем: " << password << std::endl;
-                            recording(PathAddressesUnchangedPasswords.toStdString(), address, "неподходит пароль");
-                        }
-                    } });
-            }
-            else
-            {
-                recording(PathAddressesUnchangedPasswords.toStdString(), adresses[i], "нет связи");
-                std::cerr << "Не удалось выполнить пинг для адреса: " << adresses[i] << std::endl;
-            }
-        }
-        recording(PathAddressesUnchangedPasswords.toStdString(), address, "список пройден");
-        recording(PathPasswords.toStdString(), newPassword.toStdString(), "");
-        progres->setText("Готово");
-    }
-
-    void onBrowsePasswords()
-    {
-        PathPasswords = QFileDialog::getOpenFileName(this, "Выбор списка паролей", "", "Text Files (*.txt);;All Files (*)");
-        if (!PathPasswords.isEmpty())
-        {
-            PathListPassword->setText(PathPasswords);
-        }
-    }
-
-    void onBrowseAddresses()
-    {
-        PathAddresses = QFileDialog::getOpenFileName(this, "Выбор списка адресов", "", "Text Files (*.txt);;All Files (*)");
-        if (!PathAddresses.isEmpty())
-        {
-            PathListAddresses->setText(PathAddresses);
-        }
-    }
-
-    void onBrowseUP()
-    {
-        // Открываем файловый диалог для выбора файла
-        PathAddressesUnchangedPasswords = QFileDialog::getSaveFileName(this, "", "", "Text Files (*.txt);;All Files (*)");
-        if (!PathAddressesUnchangedPasswords.isEmpty())
-        {
-            ListAddressesUnchangedPasswords->setText(PathAddressesUnchangedPasswords); // Устанавливаем выбранный путь к файлу в QLineEdit
-        }
-    }
-
-    void updateProgres(uint completed, uint total)
-    {
-        QString text = QString("Выполнено: %1%\%").arg(static_cast<int>((static_cast<double>(completed) / total) * 100));
-        progres->setText(text);
-    }
-
-private:
-    ThreadPool pool{99};
-    QMutex fileMutex; // Мьютекс для защиты записи в файл
-
-    void recording(const std::string &path_file, const std::string &name, const std::string &reason)
-    {
-        QMutexLocker locker(&fileMutex); // Заблокировать мьютекс
-
-        std::set<std::string> existingNames;
-        std::ifstream infile(path_file);
-        std::string existingName;
-        std::string line = name + " " + reason;
-
-        // Чтение существующих данных из файла
-        while (std::getline(infile, existingName))
-        {
+    if (infile.is_open()) {
+        while (std::getline(infile, existingName)) {
             existingNames.insert(existingName);
         }
         infile.close();
-
-        // Проверка на существование имени
-        if (existingNames.find(line) == existingNames.end())
-        {
-            std::ofstream file(path_file, std::ios::app);
-            if (file.is_open())
-            {
-                file << name << " " << reason << std::endl;
-            }
-            else
-            {
-                std::cerr << "Не удалось открыть файл для записи: " << path_file << std::endl;
-            }
-        }
     }
 
-    bool ping_host(const std::string &address)
-    {
-        // Реализация пинга адреса
-        // Эта реализация просто возвращает true для примера
-        // Например, вы можете использовать систему для выполнения системного вызова
-        std::string command = "ping -c 1 " + address + " > /dev/null 2>&1"; // Для Unix-систем
-        return (system(command.c_str()) == 0);
-    }
-
-    void sending_new_password(ssh_channel channel)
-    {
-        // Реализуйте логику отправки нового пароля по SSH
-        // Например:
-        std::string command = "echo 'root:" + newPassword.toStdString() + "' | chpasswd && reboot";
-        int rc = ssh_channel_request_exec(channel, command.c_str());
-        if (rc != SSH_OK)
-        {
-            std::cerr << "Ошибка при выполнении команды: " << ssh_get_error(channel) << std::endl;
-        }
-        else
-        {
-            std::cout << "Пароль изменен!" << std::endl;
+    if (existingNames.find(line) == existingNames.end()) {
+        std::ofstream file(path_file, std::ios::app);
+        if (file.is_open()) {
+            file << name << " " << reason << std::endl;
+        } else {
+            std::cerr << "Не удалось открыть файл для записи: " << path_file << std::endl;
         }
     }
+}
 
-    // Члены вашего класса
-    QLineEdit *passwordInput;
-    QLineEdit *PathListPassword;
+// Вспомогательная функция смены пароля и перезагрузки
+bool sending_new_password(SSHClient &client) {
+    // Команда chpasswd меняет пароль, && reboot выполняет перезагрузку после успеха
+    std::string command = "echo 'root:" + newPassword.toStdString() + "' | chpasswd && reboot";
+    int rc = client.executeCommand(command);
+    return (rc == SSH_OK);
+}
+
+class MainWindow : public QMainWindow {
+    Q_OBJECT
+
+public:
+    MainWindow(QWidget *parent = nullptr) : QMainWindow(parent) {
+        QWidget *centralWidget = new QWidget(this);
+        QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
+
+        // 1. Список IP
+        QHBoxLayout *ipLayout = new QHBoxLayout();
+        ipLayout->addWidget(new QLabel("Список IP:"));
+        PathListAddresses = new QLineEdit();
+        ipLayout->addWidget(PathListAddresses);
+        QPushButton *btnBrowseIP = new QPushButton("Обзор...");
+        connect(btnBrowseIP, &QPushButton::clicked, this, &MainWindow::onBrowseAddresses);
+        ipLayout->addWidget(btnBrowseIP);
+        mainLayout->addLayout(ipLayout);
+
+        // 2. Список паролей
+        QHBoxLayout *passLayout = new QHBoxLayout();
+        passLayout->addWidget(new QLabel("Список паролей:"));
+        PathListPassword = new QLineEdit();
+        passLayout->addWidget(PathListPassword);
+        QPushButton *btnBrowsePass = new QPushButton("Обзор...");
+        connect(btnBrowsePass, &QPushButton::clicked, this, &MainWindow::onBrowsePasswords);
+        passLayout->addWidget(btnBrowsePass);
+        mainLayout->addLayout(passLayout);
+
+        // 3. Файл отчета
+        QHBoxLayout *failLayout = new QHBoxLayout();
+        failLayout->addWidget(new QLabel("Файл отчета:"));
+        ListAddressesUnchangedPasswords = new QLineEdit();
+        failLayout->addWidget(ListAddressesUnchangedPasswords);
+        QPushButton *btnBrowseFail = new QPushButton("Обзор...");
+        connect(btnBrowseFail, &QPushButton::clicked, this, &MainWindow::onBrowseUP);
+        failLayout->addWidget(btnBrowseFail);
+        mainLayout->addLayout(failLayout);
+
+        // 4. Новый пароль
+        QHBoxLayout *newPassLayout = new QHBoxLayout();
+        newPassLayout->addWidget(new QLabel("Новый пароль:"));
+        inputNewPassword = new QLineEdit();
+        inputNewPassword->setEchoMode(QLineEdit::Normal);
+        inputNewPassword->setText(""); // Установлен текст по умолчанию
+        newPassLayout->addWidget(inputNewPassword);
+        mainLayout->addLayout(newPassLayout);
+
+        // Прогресс
+        progres = new QLabel("Готов к работе");
+        mainLayout->addWidget(progres);
+
+        // Кнопка запуска
+        btnStart = new QPushButton("Начать");
+        connect(btnStart, &QPushButton::clicked, this, &MainWindow::onStart);
+        mainLayout->addWidget(btnStart);
+
+        // Лог
+        logArea = new QTextEdit();
+        logArea->setReadOnly(true);
+        mainLayout->addWidget(logArea);
+
+        setCentralWidget(centralWidget);
+        setWindowTitle("Изменение пароля через SSH");
+        resize(500, 450);
+
+        // Инициализация пула потоков (4 потока)
+        pool = new ThreadPool(4);
+    }
+
+    ~MainWindow() {
+        delete pool;
+    }
+
+private slots:
+    void onBrowseAddresses() {
+        PathAddresses = QFileDialog::getOpenFileName(this, "Выбор списка адресов", "", "Text Files (*.txt)");
+        if (!PathAddresses.isEmpty()) PathListAddresses->setText(PathAddresses);
+    }
+
+    void onBrowsePasswords() {
+        PathPasswords = QFileDialog::getOpenFileName(this, "Выбор списка паролей", "", "Text Files (*.txt)");
+        if (!PathPasswords.isEmpty()) PathListPassword->setText(PathPasswords);
+    }
+
+    void onBrowseUP() {
+        PathAddressesUnchangedPasswords = QFileDialog::getSaveFileName(this, "", "", "Text Files (*.txt)");
+        if (!PathAddressesUnchangedPasswords.isEmpty()) ListAddressesUnchangedPasswords->setText(PathAddressesUnchangedPasswords);
+    }
+
+    void onStart() {
+        if (PathListAddresses->text().isEmpty() || PathListPassword->text().isEmpty() || 
+            ListAddressesUnchangedPasswords->text().isEmpty() || inputNewPassword->text().isEmpty()) {
+            logArea->append("Ошибка: Заполните все поля!");
+            return;
+        }
+
+        newPassword = inputNewPassword->text();
+        btnStart->setEnabled(false);
+        
+        // Чтение файлов
+        std::vector<std::string> ips;
+        std::vector<std::string> passwords;
+        
+        std::ifstream ifsIP(PathListAddresses->text().toStdString());
+        std::string line;
+        while (std::getline(ifsIP, line)) if (!line.empty()) ips.push_back(line);
+        
+        std::ifstream ifsPass(PathListPassword->text().toStdString());
+        while (std::getline(ifsPass, line)) if (!line.empty()) passwords.push_back(line);
+
+        // Разворачиваем список паролей, чтобы перебор шел с конца
+        std::reverse(passwords.begin(), passwords.end());
+
+        totalTasks = ips.size();
+        completedTasks = 0;
+
+        if (totalTasks == 0) {
+            logArea->append("Список IP пуст.");
+            btnStart->setEnabled(true);
+            return;
+        }
+
+        // Запуск задач
+        for (const auto& ip : ips) {
+            pool->enqueue([this, ip, passwords]() {
+                processIP(ip, passwords);
+            });
+        }
+    }
+    
+    private:
     QLineEdit *PathListAddresses;
+    QLineEdit *PathListPassword;
     QLineEdit *ListAddressesUnchangedPasswords;
+    QLineEdit *inputNewPassword;
+    QPushButton *btnStart;
+    QTextEdit *logArea;
     QLabel *progres;
+    ThreadPool *pool;
 
-    std::vector<std::string> passwords;
-    std::vector<std::string> adresses;
-    QString newPassword;
-    QString PathPasswords;
     QString PathAddresses;
+    QString PathPasswords;
     QString PathAddressesUnchangedPasswords;
+
+    std::atomic<uint> completedTasks{0};
+    uint totalTasks = 0;
+
+    void updateProgres(uint completed, uint total) {
+        QMetaObject::invokeMethod(this, [this, completed, total]() {
+            QString text = QString("Выполнено: %1%").arg(static_cast<int>((static_cast<double>(completed) / total) * 100));
+            progres->setText(text);
+        });
+    }
+
+    void log(const QString &msg) {
+        QMetaObject::invokeMethod(logArea, "append", Qt::QueuedConnection, Q_ARG(QString, msg));
+    }
+
+    void processIP(const std::string &ip, const std::vector<std::string> &passwords) {
+        // 1. Проверка пинга (обновленная функция с анализом вывода)
+        if (!ping_host(ip)) {
+            log(QString("Нет связи: %1 (хост недоступен)").arg(QString::fromStdString(ip)));
+            recording(PathAddressesUnchangedPasswords.toStdString(), ip, "нет связи");
+            
+            completedTasks++;
+            updateProgres(completedTasks, totalTasks);
+            checkFinish();
+            return;
+        }
+
+        SSHClient client(ip, "root");
+        bool connected = false;
+        bool passwordChanged = false;
+
+        // 2. Перебор паролей
+        for (const auto& pass : passwords) {
+            if (client.connect(pass)) {
+                log(QString("Подключено к %1. Пароль: %2").arg(QString::fromStdString(ip), QString::fromStdString(pass)));
+                connected = true;
+
+                // 3. Смена пароля и перезагрузка
+                if (sending_new_password(client)) {
+                    log(QString("Успех: пароль изменен, перезагрузка на %1").arg(QString::fromStdString(ip)));
+                    passwordChanged = true;
+                } else {
+                    log(QString("Ошибка: не удалось сменить пароль на %1").arg(QString::fromStdString(ip)));
+                    recording(PathAddressesUnchangedPasswords.toStdString(), ip, "ChangePassFailed");
+                }
+                
+                client.disconnect();
+                break; // Прерываем цикл паролей при успешном подключении
+            }
+        }
+
+        // 4. Если подключение не удалось ни с одним паролем
+        if (!connected) {
+            log(QString("Не подошли пароли для %1").arg(QString::fromStdString(ip)));
+            recording(PathAddressesUnchangedPasswords.toStdString(), ip, "нет пароля");
+        }
+
+        completedTasks++;
+        updateProgres(completedTasks, totalTasks);
+        checkFinish();
+    }
+
+    void checkFinish() {
+        if (completedTasks == totalTasks) {
+             QMetaObject::invokeMethod(this, [this]() {
+                 btnStart->setEnabled(true);
+                 log("Завершено.");
+
+                 // Добавление нового пароля в конец списка
+                 QString passFilePath = PathListPassword->text();
+                 if (!passFilePath.isEmpty() && !newPassword.isEmpty()) {
+                     std::ofstream file(passFilePath.toStdString(), std::ios::app);
+                     if (file.is_open()) {
+                         file << newPassword.toStdString() << std::endl;
+                         log("Новый пароль добавлен в список паролей.");
+                     } else {
+                         log("Ошибка: Не удалось открыть файл списка паролей для записи.");
+                     }
+                 }
+             });
+        }
+    }
 };
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
     MainWindow window;
-    window.setWindowTitle("Изменение пароля через SSH");
-    window.resize(400, 300);
     window.show();
     return app.exec();
 }

@@ -8,13 +8,17 @@ class SSHClient {
 public:
     SSHClient(const std::string &host, const std::string &user);
     ~SSHClient();
-    ssh_channel connectSSH(const std::string &password, int timeoutSec); // Переименован метод
-    void close();
+
+    bool connect(const std::string &password, int timeoutSec = 1);
+    int executeCommand(const std::string &command);
+    void disconnect();
+    bool isConnected() const;
 
 private:
     std::string host_;
     std::string user_;
     ssh_session my_ssh_session;
+    bool is_connected_;
 };
 
 #endif // SSHCLIENT_H
