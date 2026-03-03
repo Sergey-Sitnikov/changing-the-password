@@ -9,7 +9,7 @@
 #include <QTextEdit>
 #include <QMutex>
 #include <QProgressBar>
-#include <QProcess> // Добавлено для надежного пинга
+#include <QProcess> 
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -25,10 +25,22 @@ QString newPassword;
 // Функция пинга с анализом вывода
 bool ping_host(const std::string &address) {
     QProcess pingProcess;
-    // Команда ping: 1 пакет, таймаут 2 секунды
-    pingProcess.start("ping", QStringList() << "-c" << "1" << "-W" << "2" << QString::fromStdString(address));
     
-    // Ждем завершения (максимум 3.5 сек, чтобы уче таймаут)
+#ifdef Q_OS_WIN
+    // Windows: -n 1 (1 пакет), -w 2000 (таймаут 2 сек в миллисекундах)
+    pingProcess.start("ping", QStringList() 
+        << "-n" << "1" 
+        << "-w" << "2000" 
+        << QString::fromStdString(address));
+#else
+    // Unix/Linux: -c 1 (1 пакет), -W 2 (таймаут 2 сек)
+    pingProcess.start("ping", QStringList() 
+        << "-c" << "1" 
+        << "-W" << "2" 
+        << QString::fromStdString(address));
+#endif
+    
+    // Ждем завершения (максимум 3.5 сек)
     if (!pingProcess.waitForFinished(3500)) {
         pingProcess.kill();
         return false;
@@ -38,13 +50,19 @@ bool ping_host(const std::string &address) {
     QByteArray output = pingProcess.readAllStandardOutput();
     QString strOutput = QString::fromUtf8(output);
 
-    // Анализируем вывод. Стандартный вывод успешного пинга содержит "1 received"
-    // Это надежнее, чем просто код возврата, так как некоторые системы могут возвращать 0 при ошибках
+#ifdef Q_OS_WIN
+    // Windows: успешный ping содержит "TTL=" или "Reply from"
+    if (strOutput.contains("TTL=") || strOutput.contains("Reply from")) {
+        return true;
+    }
+#else
+    // Unix: успешный ping содержит "1 received"
     if (strOutput.contains("1 received") || strOutput.contains("1 packets received")) {
         return true;
     }
+#endif
 
-    // Если код возврата 0, но по какой-то причине текст не совпал, считаем успехом (fallback)
+    // Fallback: код возврата 0
     if (exitCode == 0) {
         return true;
     }
@@ -264,12 +282,13 @@ private slots:
             return;
         }
 
-        SSHClient client(ip, "root");
         bool connected = false;
         bool passwordChanged = false;
 
-        // 2. Перебор паролей
+        // 2. Перебор паролей — новое подключение для каждой попытки
         for (const auto& pass : passwords) {
+            SSHClient client(ip, "root");  // Создаём новое подключение для каждого пароля
+            
             if (client.connect(pass)) {
                 log(QString("Подключено к %1. Пароль: %2").arg(QString::fromStdString(ip), QString::fromStdString(pass)));
                 connected = true;
@@ -286,6 +305,7 @@ private slots:
                 client.disconnect();
                 break; // Прерываем цикл паролей при успешном подключении
             }
+            // При неудаче — client уничтожается здесь, деструктор корректно закроет сессию
         }
 
         // 4. Если подключение не удалось ни с одним паролем
