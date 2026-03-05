@@ -1,83 +1,63 @@
-cmake_minimum_required(VERSION 3.5)
+# changing the password/CMakeLists.txt
+
+cmake_minimum_required(VERSION 3.10)
 project(SSHPasswordChanger)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# --- Настройки для статической сборки под Windows ---
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+# --- QXlsx ---
+set(QXLSX_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/header")
+#set(QXLSX_LIBRARY_WIN "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build/Release/QXlsxQt6.lib")
+set(QXLSX_LIBRARY_WIN "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build/libQXlsxQt6.a")
+set(QXLSX_LIBRARY_UNIX "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build_linux/libQXlsxQt6.a")
+
 if(WIN32)
-    if(MSVC)
-        # Используем статический runtime библиотеки C (/MT для MSVC)
-        set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded")
-    elseif(MINGW)
-        # Для MXE (MinGW) добавляем флаг полной статической линковки
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+    if(EXISTS ${QXLSX_INCLUDE_DIR} AND EXISTS ${QXLSX_LIBRARY_WIN})
+        message(STATUS "Found QXlsx: ${QXLSX_LIBRARY_WIN}")
+        set(QXLSX_FOUND TRUE)
+        set(QXLSX_LIBRARY ${QXLSX_LIBRARY_WIN})
+    endif()
+elseif(UNIX)
+    if(EXISTS ${QXLSX_INCLUDE_DIR} AND EXISTS ${QXLSX_LIBRARY_UNIX})
+        message(STATUS "Found QXlsx: ${QXLSX_LIBRARY_UNIX}")
+        set(QXLSX_FOUND TRUE)
+        set(QXLSX_LIBRARY ${QXLSX_LIBRARY_UNIX})
     endif()
 endif()
 
-# --- Поиск Qt ---
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-# --- Поиск LibSSH ---
-# Пытаемся найти через PkgConfig (Linux/MSYS2)
-if(UNIX)
+# --- LibSSH ---
+if(UNIX AND NOT WIN32)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(LIBSSH REQUIRED IMPORTED_TARGET libssh)
 else()
-    # Для Windows ищем вручную (LIBSSH_INCLUDE_DIR и LIBSSH_LIBRARY)
     find_path(LIBSSH_INCLUDE_DIR
         NAMES libssh/libssh.h
-        PATHS
-            ${LIBSSH_ROOT}/include
-            ${CMAKE_PREFIX_PATH}/include
-            "$ENV{PROGRAMFILES}/libssh/include"
+        PATHS ${LIBSSH_ROOT}/include ${CMAKE_PREFIX_PATH}/include
     )
-
     find_library(LIBSSH_LIBRARY
         NAMES ssh libssh
-        PATHS
-            ${LIBSSH_ROOT}/lib
-            ${CMAKE_PREFIX_PATH}/lib
-            "$ENV{PROGRAMFILES}/libssh/lib"
+        PATHS ${LIBSSH_ROOT}/lib ${CMAKE_PREFIX_PATH}/lib
     )
-
+    find_library(GCRYPT_LIBRARY
+        NAMES gcrypt
+        PATHS ${LIBSSH_ROOT}/lib ${CMAKE_PREFIX_PATH}/lib
+    )
+    find_library(GPG_ERROR_LIBRARY
+        NAMES gpg-error
+        PATHS ${LIBSSH_ROOT}/lib ${CMAKE_PREFIX_PATH}/lib
+    )
+    
     if(LIBSSH_INCLUDE_DIR AND LIBSSH_LIBRARY)
         set(LIBSSH_INCLUDE_DIRS ${LIBSSH_INCLUDE_DIR})
-        set(LIBSSH_LIBRARIES ${LIBSSH_LIBRARY})
         message(STATUS "Found LibSSH: ${LIBSSH_LIBRARY}")
-    else()
-        message(FATAL_ERROR "LibSSH not found. Please install libssh or set LIBSSH_ROOT.")
     endif()
 endif()
 
-# Находим библиотеку потоков
 find_package(Threads REQUIRED)
-
-# Находим Zlib и OpenSSL (зависимости LibSSH)
 find_package(ZLIB REQUIRED)
 find_package(OpenSSL REQUIRED)
-
-# --- Поиск LibGcrypt и GpgError (зависимости LibSSH) ---
-find_library(GCRYPT_LIBRARY
-    NAMES gcrypt libgcrypt
-    PATHS
-        ${LIBSSH_ROOT}/lib
-        ${CMAKE_PREFIX_PATH}/lib
-        "$ENV{PROGRAMFILES}/libgcrypt/lib"
-)
-
-find_library(GPG_ERROR_LIBRARY
-    NAMES gpg-error libgpg-error
-    PATHS
-        ${LIBSSH_ROOT}/lib
-        ${CMAKE_PREFIX_PATH}/lib
-        "$ENV{PROGRAMFILES}/gpg-error/lib"
-)
-
-if(GCRYPT_LIBRARY AND GPG_ERROR_LIBRARY)
-    message(STATUS "Found LibGcrypt: ${GCRYPT_LIBRARY}")
-else()
-    message(FATAL_ERROR "LibGcrypt or GpgError not found. Please install libgcrypt.")
-endif()
 
 add_executable(SSHPasswordChanger
     src/main.cpp
@@ -87,29 +67,29 @@ add_executable(SSHPasswordChanger
 
 set_target_properties(SSHPasswordChanger PROPERTIES AUTOMOC ON)
 
-# --- Исправление ошибок линковки LibSSH ---
-# Указываем, что используется статическая LibSSH
+# Важно: LIBSSH_STATIC для статической линковки
 if(WIN32)
     target_compile_definitions(SSHPasswordChanger PRIVATE LIBSSH_STATIC)
 endif()
 
-if(WIN32 AND MSVC)
-    # Явное отключение динамической линковки CRT для MSVC
-    set_property(TARGET SSHPasswordChanger APPEND PROPERTY LINK_FLAGS "/NODEFAULTLIB:msvcrt.lib")
-endif()
+target_include_directories(SSHPasswordChanger PRIVATE ${LIBSSH_INCLUDE_DIRS})
 
 target_link_libraries(SSHPasswordChanger
     Qt6::Widgets
     Threads::Threads
 )
 
-# --- Линкуем LibSSH и её зависимости ---
+# QXlsx
+if(QXLSX_FOUND)
+    target_include_directories(SSHPasswordChanger PRIVATE ${QXLSX_INCLUDE_DIR})
+    target_link_libraries(SSHPasswordChanger ${QXLSX_LIBRARY})
+    target_compile_definitions(SSHPasswordChanger PRIVATE USE_QXLSX)
+endif()
+
+# LibSSH
 if(TARGET PkgConfig::LIBSSH)
-    # Если найден через PkgConfig (обычная Linux сборка)
     target_link_libraries(SSHPasswordChanger PkgConfig::LIBSSH)
 elseif(LIBSSH_LIBRARY)
-    # Если найден вручную (Windows/MXE сборка)
-    # Добавлены iphlpapi и ws2_32 для сетевых функций (if_nametoindex)
     target_link_libraries(SSHPasswordChanger 
         ${LIBSSH_LIBRARY}
         ${GCRYPT_LIBRARY}
@@ -117,10 +97,8 @@ elseif(LIBSSH_LIBRARY)
         ZLIB::ZLIB
         OpenSSL::Crypto
         OpenSSL::SSL
-        iphlpapi
-        ws2_32
     )
+    if(WIN32)
+        target_link_libraries(SSHPasswordChanger iphlpapi ws2_32)
+    endif()
 endif()
-
-# Оставляем только include для LibSSH
-include_directories(${LIBSSH_INCLUDE_DIRS})

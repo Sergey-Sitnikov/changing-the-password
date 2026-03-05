@@ -15,9 +15,14 @@
 #include <iostream>
 #include <set>
 #include <atomic>
+#include <QRegularExpression>
 #include "SSHClient.h"
 #include "ThreadPool.h"
 
+#ifdef USE_QXLSX
+#include "xlsxdocument.h"
+#endif
+    
 // Глобальные переменные для синхронизации и хранения данных
 QMutex fileMutex; 
 QString newPassword; 
@@ -39,7 +44,7 @@ bool ping_host(const std::string &address) {
         << "-W" << "2" 
         << QString::fromStdString(address));
 #endif
-    
+
     // Ждем завершения (максимум 3.5 сек)
     if (!pingProcess.waitForFinished(3500)) {
         pingProcess.kill();
@@ -187,7 +192,8 @@ public:
 
 private slots:
     void onBrowseAddresses() {
-        PathAddresses = QFileDialog::getOpenFileName(this, "Выбор списка адресов", "", "Text Files (*.txt)");
+        PathAddresses = QFileDialog::getOpenFileName(this, "Выбор списка адресов", "", 
+            "Excel Files (*.xlsx);;Text Files (*.txt);;All Files (*.*)");
         if (!PathAddresses.isEmpty()) PathListAddresses->setText(PathAddresses);
     }
 
@@ -201,6 +207,51 @@ private slots:
         if (!PathAddressesUnchangedPasswords.isEmpty()) ListAddressesUnchangedPasswords->setText(PathAddressesUnchangedPasswords);
     }
 
+    // Добавьте в начало файла (после существующих #include)
+    // Добавьте новую функцию перед processIP
+    std::vector<std::string> readIPsFromExcel(const QString &filePath) {
+        std::vector<std::string> ips;
+#ifdef USE_QXLSX
+        QXlsx::Document xlsx(filePath);
+        if (!xlsx.load()) {
+            return ips;
+        }
+        
+        // Ищем столбец "атрибуты" в первой строке
+        int attrColumn = -1;
+        for (int col = 1; col <= xlsx.dimension().columnCount(); ++col) {
+            QVariant header = xlsx.read(1, col);
+            if (header.toString().trimmed().toLower() == "атрибуты") {
+                attrColumn = col;
+                break;
+            }
+        }
+        
+        if (attrColumn == -1) {
+            return ips;
+        }
+        
+        // Читаем IP из столбца "атрибуты"
+        for (int row = 2; row <= xlsx.dimension().rowCount(); ++row) {
+            QVariant cell = xlsx.read(row, attrColumn);
+            QString value = cell.toString().trimmed();
+            if (!value.isEmpty()) {
+                // Извлекаем IP (формат может быть "IP:192.168.1.1" или просто "192.168.1.1")
+                QRegularExpression ipRegex("(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})");
+                QRegularExpressionMatch match = ipRegex.match(value);
+                if (match.hasMatch()) {
+                    ips.push_back(match.captured(1).toStdString());
+                }
+            }
+        }
+#endif
+        return ips;
+    }
+
+    // Измените функцию onStart()
+    // changing the password/src/main.cpp
+
+    // Убедитесь, что onStart использует Excel:
     void onStart() {
         if (PathListAddresses->text().isEmpty() || PathListPassword->text().isEmpty() || 
             ListAddressesUnchangedPasswords->text().isEmpty() || inputNewPassword->text().isEmpty()) {
@@ -211,18 +262,35 @@ private slots:
         newPassword = inputNewPassword->text();
         btnStart->setEnabled(false);
         
-        // Чтение файлов
         std::vector<std::string> ips;
         std::vector<std::string> passwords;
         
-        std::ifstream ifsIP(PathListAddresses->text().toStdString());
-        std::string line;
-        while (std::getline(ifsIP, line)) if (!line.empty()) ips.push_back(line);
-        
-        std::ifstream ifsPass(PathListPassword->text().toStdString());
-        while (std::getline(ifsPass, line)) if (!line.empty()) passwords.push_back(line);
+        // Чтение IP из xlsx или txt
+        QString addrPath = PathListAddresses->text();
+        if (addrPath.endsWith(".xlsx", Qt::CaseInsensitive)) {
+#ifdef USE_QXLSX
+            ips = readIPsFromExcel(addrPath);
+            log(QString("Прочитано %1 IP из Excel").arg(ips.size()));
+#else
+            log("Ошибка: QXlsx не подключён.");
+            btnStart->setEnabled(true);
+            return;
+#endif
+        } else {
+            std::ifstream ifsIP(addrPath.toStdString());
+            std::string line;
+            while (std::getline(ifsIP, line)) {
+                if (!line.empty()) ips.push_back(line);
+            }
+        }
 
-        // Разворачиваем список паролей, чтобы перебор шел с конца
+        // Чтение паролей
+        std::ifstream ifsPass(PathListPassword->text().toStdString());
+        std::string line;
+        while (std::getline(ifsPass, line)) {
+            if (!line.empty()) passwords.push_back(line);
+        }
+
         std::reverse(passwords.begin(), passwords.end());
 
         totalTasks = ips.size();
@@ -234,14 +302,13 @@ private slots:
             return;
         }
 
-        // Запуск задач
         for (const auto& ip : ips) {
             pool->enqueue([this, ip, passwords]() {
                 processIP(ip, passwords);
             });
         }
     }
-    
+
     private:
     QLineEdit *PathListAddresses;
     QLineEdit *PathListPassword;
