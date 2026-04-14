@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 # --- QXlsx ---
-set(QXLSX_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/header")
+set(QXLSX_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/QXlsx/header")
 #set(QXLSX_LIBRARY_WIN "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build/Release/QXlsxQt6.lib")
 set(QXLSX_LIBRARY_WIN "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build/libQXlsxQt6.a")
 set(QXLSX_LIBRARY_UNIX "${CMAKE_SOURCE_DIR}/QXlsx/QXlsx/build_linux/libQXlsxQt6.a")
